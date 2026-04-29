@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Elite Password Generator</title>
+	<link rel="stylesheet" href="index.css" />
+</head>
+<body>
+	<div class="bg-orb bg-orb-a" aria-hidden="true"></div>
+	<div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+
+	<main class="shell">
+		<section class="generator-card" aria-labelledby="generator-title">
+			<div class="card-ribbon">Secure by design</div>
+
+			<div class="hero">
+				<p class="eyebrow">Password Studio</p>
+				<h1 id="generator-title">
+					Generate a <span>random password</span>
+				</h1>
+				<p class="subheading">Create strong, elegant passwords in a single click. Built for speed, privacy, and style.</p>
+			</div>
+
+			<form class="controls" id="password-form">
+				<div class="control-group length-group">
+					<div class="group-head">
+						<label for="length">Password length</label>
+						<span id="length-value">16</span>
+					</div>
+					<input id="length" name="length" type="range" min="8" max="32" value="16" />
+					<div class="range-meta">
+						<span>8</span>
+						<span>32</span>
+					</div>
+				</div>
+
+				<div class="control-grid">
+					<label class="toggle">
+						<input type="checkbox" id="uppercase" checked />
+						<span>Uppercase</span>
+					</label>
+					<label class="toggle">
+						<input type="checkbox" id="lowercase" checked />
+						<span>Lowercase</span>
+					</label>
+					<label class="toggle">
+						<input type="checkbox" id="numbers" checked />
+						<span>Numbers</span>
+					</label>
+					<label class="toggle">
+						<input type="checkbox" id="symbols" checked />
+						<span>Symbols</span>
+					</label>
+					<label class="toggle">
+						<input type="checkbox" id="exclude-ambiguous" />
+						<span>Exclude ambiguous</span>
+					</label>
+					<label class="toggle">
+						<input type="checkbox" id="no-repeating" />
+						<span>No repeated chars</span>
+					</label>
+				</div>
+
+				<div class="preset-row" aria-label="Preset strength options">
+					<button type="button" class="preset active" data-length="16" data-symbols="true" data-numbers="true">Balanced</button>
+					<button type="button" class="preset" data-length="12" data-symbols="false" data-numbers="true">Quick login</button>
+					<button type="button" class="preset" data-length="24" data-symbols="true" data-numbers="true">Ultra secure</button>
+				</div>
+
+				<button type="submit" class="generate-btn">Generate passwords</button>
+			</form>
+
+			<section class="stats" aria-label="Password strength details">
+				<div class="stat">
+					<span class="stat-label">Strength</span>
+					<strong id="strength-label">Very strong</strong>
+				</div>
+				<div class="stat">
+					<span class="stat-label">Entropy</span>
+					<strong id="entropy-value">0 bits</strong>
+				</div>
+				<div class="stat">
+					<span class="stat-label">Generated</span>
+					<strong id="generated-count">2 passwords</strong>
+				</div>
+			</section>
+
+			<div class="meter" aria-hidden="true">
+				<div class="meter-fill" id="meter-fill"></div>
+			</div>
+
+			<section class="results" aria-live="polite">
+				<button class="result-card" type="button" data-copy-target="password-1">
+					<span class="result-label">Primary password</span>
+					<code id="password-1">Click generate</code>
+					<span class="result-action">Tap to copy</span>
+				</button>
+
+				<button class="result-card secondary" type="button" data-copy-target="password-2">
+					<span class="result-label">Backup password</span>
+					<code id="password-2">Click generate</code>
+					<span class="result-action">Tap to copy</span>
+				</button>
+			</section>
+
+			<div class="footer-row">
+				<button type="button" class="ghost-btn" id="copy-all">Copy both</button>
+				<p class="hint" id="feedback">Passwords are generated locally in your browser.</p>
+			</div>
+		</section>
+	</main>
+
+	<div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+	<script src="index.js"></script>
+</body>
+</html>
